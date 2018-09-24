@@ -34,3 +34,25 @@ class Question(models.Model):
 
 	def __str__ (self):
 		return self.question
+
+class Place(models.Model):
+	name = models.CharField(max_length=250)
+	category = models.ManyToManyField(Category)
+	description = models.TextField()
+	location = models.CharField(max_length=250)
+	image = models.ImageField(blank=True)
+
+	def __str__ (self):
+		return self.name
+
+class Event(models.Model):
+	name = models.CharField(max_length=250)
+	category = models.ManyToManyField(Category)
+	description = models.TextField()
+	location = models.CharField(max_length=250)
+	image = models.ImageField(blank=True)
+	date_time = models.DateTimeField()
+
+	
+	def __str__ (self):
+		return self.name

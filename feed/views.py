@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-from .models import PhysicalActivity, Category, Question, Answer
-from .serializers import PhysicalActivitiySerializer, CategoryDetailSerializer, QuestionSerialzer, AnswerSerialzer
+from .models import PhysicalActivity, Category, Question, Answer, Place, Event
+from .serializers import PhysicalActivitiySerializer, CategoryDetailSerializer, QuestionSerialzer, AnswerSerialzer, PlaceSerializer, EventSerializer
 
 # Create your views here.
 class PhysicalActivitiesList(ListAPIView):
@@ -29,4 +29,11 @@ class QuestionDetail(RetrieveAPIView):
 	lookup_field = 'id'
 	lookup_url_kwargs = 'id'
 
+class PlaceList(ListAPIView):
+	queryset = Place.objects.all()
+	serializer_class = PlaceSerializer
 
+
+class EventList(ListAPIView):
+	queryset = Event.objects.all()
+	serializer_class = EventSerializer
