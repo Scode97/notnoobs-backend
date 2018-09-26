@@ -23,6 +23,7 @@ class Category(models.Model):
 class Answer(models.Model):
 	answer = models.CharField(max_length=100)
 	quest = models.ForeignKey('Question', on_delete=models.SET_NULL, null=True, blank=True)
+	category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True,)
 
 	def __str__ (self):
 		return self.answer
