@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'feed',
-    'rest_framework'
+    'rest_framework',
+    "geoposition",
 ]
 
 MIDDLEWARE = [

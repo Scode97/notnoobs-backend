@@ -41,6 +41,7 @@ class Place(models.Model):
 	category = models.ManyToManyField(Category)
 	description = models.TextField()
 	location = models.CharField(max_length=250)
+	locoLink=models.URLField(max_length=200, default=1)
 	image = models.ImageField(blank=True)
 
 	def __str__ (self):
@@ -57,3 +58,12 @@ class Event(models.Model):
 	
 	def __str__ (self):
 		return self.name
+
+class Article(models.Model):
+    title = models.CharField(max_length=250)
+    content = models.TextField()
+    date = models.DateTimeField()
+    category = models.ManyToManyField(Category)
+
+    def __str__(self):
+        return self.title
