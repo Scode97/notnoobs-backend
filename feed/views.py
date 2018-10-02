@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
-from .models import PhysicalActivity, Category, Question, Answer, Place, Event
-from .serializers import UserCreateSerializer, PhysicalActivitiySerializer, CategoryDetailSerializer, QuestionSerialzer, AnswerSerialzer, PlaceSerializer, EventSerializer
+from .models import PhysicalActivity, Category, Question, Answer, Place, Event, Booking
+from .serializers import UserCreateSerializer, PhysicalActivitiySerializer, CategoryDetailSerializer, QuestionSerialzer, AnswerSerialzer, PlaceSerializer, EventSerializer, BookingSerializer
 
 # Create your views here.
 class PhysicalActivitiesList(ListAPIView):
@@ -53,6 +53,20 @@ class FilteredPlaces(ListAPIView):
 		id = self.kwargs['id']
 		return Place.objects.filter(category__in=[id])
 
+class CreateBooking(CreateAPIView):
+	serializer_class = BookingSerializer
+
+	def perform_create(self, serializer):
+		serializer.save(user=self.request.user)
+       
+
+
+class GetBooking(ListAPIView):
+	serializer_class = BookingSerializer
+
+	def get_queryset(self):
+		return Booking.objects.filter(user=this.request.user)
+	
 
 
 

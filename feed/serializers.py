@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import PhysicalActivity
-from .models import Category, Answer, Question, Place, Event
+from .models import Category, Answer, Question, Place, Event, Booking
 from django.dispatch import receiver
 from rest_framework_jwt.settings import api_settings
 
@@ -44,7 +44,10 @@ class EventSerializer(serializers.ModelSerializer):
 		model = Event
 		fields = "__all__"
          
-
+class BookingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Booking
+        fields = ["seat", "event"]
 
 # FOR Users
 

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class PhysicalActivity(models.Model):
@@ -66,5 +67,13 @@ class Status(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class Booking(models.Model):
+	event = models.ForeignKey('Event', on_delete=models.CASCADE, blank=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+	seat = models.IntegerField()
+
+	def __str__(self):
+		return self.user.username
 
 
