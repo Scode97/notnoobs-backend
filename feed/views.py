@@ -54,6 +54,16 @@ class FilteredPlaces(ListAPIView):
 		return Place.objects.filter(category__in=[id])
 
 
+class FilteredEvents(ListAPIView):
+	serializer_class = EventSerializer
+
+
+	def get_queryset(self):
+		id = self.kwargs['id']
+		return Event.objects.filter(category__in=[id])
+
+
+
 
 
 
