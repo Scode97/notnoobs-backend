@@ -53,7 +53,18 @@ class Event(models.Model):
 	location = models.CharField(max_length=250)
 	image = models.ImageField(blank=True)
 	date_time = models.DateTimeField()
+	price = models.DecimalField(max_digits=5, decimal_places=3)
+	status = models.ForeignKey('Status', on_delete=models.CASCADE, blank=True)
+
 
 	
 	def __str__ (self):
 		return self.name
+
+class Status(models.Model):
+	title = models.CharField(max_length=120)
+
+	def __str__(self):
+		return self.title
+
+
