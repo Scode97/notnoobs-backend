@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib import admin
-from feed.views import UserCreateAPIView, FilteredPlaces, PhysicalActivitiesList, CategoryDetailView, QuestionDetail, AnswerDetail, PlaceList, EventList, GetBooking, CreateBooking
+from feed.views import UserCreateAPIView, FilteredPlaces,GetEvent, PhysicalActivitiesList, CategoryDetailView, QuestionDetail, AnswerDetail, PlaceList, EventList, GetBooking, CreateBooking
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework_jwt.views import obtain_jwt_token
@@ -24,6 +24,7 @@ urlpatterns = [
     path('filterPlaces/<int:id>', FilteredPlaces.as_view(), name='filterPlaces'),
     path('createBooking/', CreateBooking.as_view(), name='create-booking'),
     path('getBooking/', GetBooking.as_view(), name= 'get-booking'),
+    path('event/<int:id>/', GetEvent.as_view(), name="get-event"),
 ]
 
 if settings.DEBUG:

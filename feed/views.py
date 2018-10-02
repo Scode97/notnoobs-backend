@@ -38,6 +38,11 @@ class EventList(ListAPIView):
 	queryset = Event.objects.all()
 	serializer_class = EventSerializer
 
+class GetEvent(RetrieveAPIView):
+	queryset = Event.objects.all()
+	serializer_class = EventSerializer
+	lookup_field = 'id'
+	lookup_url_kwargs = 'id'
 
 
 
