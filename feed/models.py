@@ -56,8 +56,6 @@ class Event(models.Model):
 	date_time = models.DateTimeField()
 	price = models.DecimalField(max_digits=5, decimal_places=3)
 	status = models.ForeignKey('Status', on_delete=models.CASCADE, blank=True)
-
-
 	
 	def __str__ (self):
 		return self.name
@@ -69,11 +67,25 @@ class Status(models.Model):
 		return self.title
 
 class Booking(models.Model):
-	event = models.ForeignKey('Event', on_delete=models.CASCADE, blank=True)
+	event = models.ForeignKey(Event, on_delete=models.CASCADE, blank=True,null=True)
 	user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
 	seat = models.IntegerField()
 
 	def __str__(self):
 		return self.user.username
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=250)
+    content = models.TextField()
+    date = models.DateTimeField()
+    category = models.ManyToManyField(Category)
+
+
+    def __str__(self):
+        return self.title
+
+
+   
 
 

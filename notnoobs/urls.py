@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib import admin
 
-from feed.views import UserCreateAPIView, FilteredPlaces,GetEvent, FilteredEvents, PhysicalActivitiesList, CategoryDetailView, QuestionDetail, AnswerDetail, PlaceList, EventList, GetBooking, CreateBooking
+from feed.views import UserCreateAPIView, FilteredPlaces,GetEvent, GetArticle, GetPlace, FilteredEvents, FilteredArticles, PhysicalActivitiesList, CategoryDetailView, QuestionDetail, AnswerDetail, PlaceList, EventList, ArticleList, GetBooking, CreateBooking
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -19,18 +19,32 @@ urlpatterns = [
     
     path('physicalActivitiesList/', PhysicalActivitiesList.as_view(), name='api-plan-List'),
     path('category/<int:id>/', CategoryDetailView.as_view(), name='category-detail'),
+
     path('question/<int:id>/', QuestionDetail.as_view(), name='question-detail'),
     path('answer/<int:id>/', AnswerDetail.as_view(), name='answer-detail'),
+
+
+
     path('places/', PlaceList.as_view(), name='places'),
-    path('event/', EventList.as_view(), name='event'),
+    path('place/<int:id>/', GetPlace.as_view(), name="get-place"),
     path('filterPlaces/<int:id>', FilteredPlaces.as_view(), name='filterPlaces'),
 
+
+    path('event/', EventList.as_view(), name='event'),
+    path('event/<int:id>/', GetEvent.as_view(), name="get-event"),
     path('filterEvents/<int:id>', FilteredEvents.as_view(), name='filterEvents'),
+
+
+    path('article/', ArticleList.as_view(), name='article'),
+    path('article/<int:id>/', GetArticle.as_view(), name="get-article"),
+    path('filterArticles/<int:id>', FilteredArticles.as_view(), name='filterArticles'),
+
+
 
 
     path('createBooking/', CreateBooking.as_view(), name='create-booking'),
     path('getBooking/', GetBooking.as_view(), name= 'get-booking'),
-    path('event/<int:id>/', GetEvent.as_view(), name="get-event"),
+
 
 ]
 
