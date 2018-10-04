@@ -43,7 +43,7 @@ urlpatterns = [
 
 
     path('createBooking/', CreateBooking.as_view(), name='create-booking'),
-    path('getBooking/', GetBooking.as_view(), name= 'get-booking'),
+    path('getBooking/<int:id>', GetBooking.as_view(), name= 'get-booking'),
 
 
 ]

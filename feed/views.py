@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
 from .models import PhysicalActivity, Category, Question, Answer, Place, Event, Booking, Article
 from .serializers import UserCreateSerializer, PhysicalActivitiySerializer, CategoryDetailSerializer, QuestionSerialzer, AnswerSerialzer, PlaceSerializer, EventSerializer, BookingSerializer, ArticleSerializer
-
+from django.contrib.auth.models import User
 from rest_framework.permissions import IsAuthenticated
 
 
@@ -117,10 +117,13 @@ class CreateBooking(CreateAPIView):
 	# 	serializer.save(user=self.request.user)
        
 class GetBooking(ListAPIView):
+	queryset = Booking.objects.all()
 	serializer_class = BookingSerializer
 
 	def get_queryset(self):
-		return Booking.objects.filter(user=this.request.user)
+		id = self.kwargs['id']
+		user = User.objects.get(id=id)
+		return Booking.objects.filter(user=user)
 	
 
 
